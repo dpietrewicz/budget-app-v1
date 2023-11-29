@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { GlobalContex } from "../context/GlobalState";
 import styles from "./IncomeOutcomeList.module.css";
 
-const IncomeModal = ({ open, onClose, income }) => {
-    const { editIncome } = useContext(GlobalContex);
+const OutcomeModal = ({ open, onClose, outcome }) => {
+    const { editOutcome } = useContext(GlobalContex);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -12,9 +12,9 @@ const IncomeModal = ({ open, onClose, income }) => {
         const amount = Number(
             event.currentTarget.elements.editFormAmount.value
         );
-        const updatedIncome = { id: income.id, text, amount };
+        const updatedOutcome = { id: outcome.id, text, amount };
 
-        editIncome(updatedIncome);
+        editOutcome(updatedOutcome);
         onClose();
     };
 
@@ -26,7 +26,7 @@ const IncomeModal = ({ open, onClose, income }) => {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="editFormName">Nazwa</label>
                     <input
-                        defaultValue={income.text}
+                        defaultValue={outcome.text}
                         type="text"
                         className={styles.modalInputStyles}
                         id="editFormName"
@@ -35,7 +35,7 @@ const IncomeModal = ({ open, onClose, income }) => {
                     />
                     <label htmlFor="editFormAmount">Kwota</label>
                     <input
-                        defaultValue={income.amount}
+                        defaultValue={outcome.amount}
                         type="number"
                         id="editFormAmount"
                         name="editFormAmount"
@@ -61,4 +61,4 @@ const IncomeModal = ({ open, onClose, income }) => {
     );
 };
 
-export default IncomeModal;
+export default OutcomeModal;

@@ -3,16 +3,8 @@ import AppReducer from "./AppReducer";
 
 //Initial state
 const initialState = {
-    incomes: [
-        { id: 1, text: "Salary", amount: 1000 },
-        { id: 2, text: "Stuff", amount: 200 },
-        { id: 3, text: "Book", amount: 50 },
-    ],
-    outcomes: [
-        { id: 1, text: "Camera", amount: 20 },
-        { id: 2, text: "Flowers", amount: 30 },
-        { id: 3, text: "Coffe", amount: 70 },
-    ],
+    incomes: [],
+    outcomes: [],
 };
 
 // Create context
@@ -23,6 +15,13 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     // Actions
+    function addIncome(income) {
+        dispatch({
+            type: "ADD_INCOME",
+            payload: income,
+        });
+    }
+
     function deleteIncome(id) {
         dispatch({
             type: "DELETE_INCOME",
@@ -33,13 +32,6 @@ export const GlobalProvider = ({ children }) => {
     function editIncome(income) {
         dispatch({
             type: "EDIT_INCOME",
-            payload: income,
-        });
-    }
-
-    function addIncome(income) {
-        dispatch({
-            type: "ADD_INCOME",
             payload: income,
         });
     }
@@ -58,16 +50,24 @@ export const GlobalProvider = ({ children }) => {
         });
     }
 
+    function editOutcome(outcome) {
+        dispatch({
+            type: "EDIT_OUTCOME",
+            payload: outcome,
+        });
+    }
+
     return (
         <GlobalContex.Provider
             value={{
                 incomes: state.incomes,
                 outcomes: state.outcomes,
-                deleteIncome,
                 addIncome,
-                deleteOutcome,
-                addOutcome,
+                deleteIncome,
                 editIncome,
+                addOutcome,
+                deleteOutcome,
+                editOutcome,
             }}
         >
             {children}

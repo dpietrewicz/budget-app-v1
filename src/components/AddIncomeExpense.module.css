@@ -38,5 +38,5 @@
 }
 .addAlert {
     color: var(--color-red-dark);
-    font-size: small;
+    font-size: 12px;
 }

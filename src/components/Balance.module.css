@@ -20,3 +20,13 @@
 .balanceAmount {
     margin: 0 10px 0 10px;
 }
+
+.logoWrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.logoImage {
+    height: 8rem;
+}
