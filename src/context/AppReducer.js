@@ -13,6 +13,16 @@ export default (state, action) => {
                 incomes: [action.payload, ...state.incomes],
             };
 
+        case "EDIT_INCOME": {
+            const newList = state.incomes.map((income) => {
+                if (income.id === action.payload.id) {
+                    return action.payload;
+                }
+                return income;
+            });
+            return { ...state, incomes: newList };
+        }
+
         case "DELETE_OUTCOME":
             return {
                 ...state,

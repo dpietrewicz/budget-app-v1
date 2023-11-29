@@ -31,6 +31,8 @@ const AddIncome = () => {
         };
 
         addIncome(newIncome);
+        setText("");
+        setAmount("");
     };
 
     return (

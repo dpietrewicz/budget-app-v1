@@ -30,6 +30,13 @@ export const GlobalProvider = ({ children }) => {
         });
     }
 
+    function editIncome(income) {
+        dispatch({
+            type: "EDIT_INCOME",
+            payload: income,
+        });
+    }
+
     function addIncome(income) {
         dispatch({
             type: "ADD_INCOME",
@@ -60,6 +67,7 @@ export const GlobalProvider = ({ children }) => {
                 addIncome,
                 deleteOutcome,
                 addOutcome,
+                editIncome,
             }}
         >
             {children}
