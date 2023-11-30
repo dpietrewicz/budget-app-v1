@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { GlobalContex } from "../context/GlobalState";
 import styles from "./IncomeOutcomeList.module.css";
 import IncomeModal from "./IncomeModal";

@@ -26,6 +26,7 @@
     min-height: 120px;
     border-bottom: var(--line);
     font-size: 15px;
+    padding-bottom: 10px;
 }
 
 .btnWrapper {

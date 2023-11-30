@@ -1,24 +1,25 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { GlobalContex } from "../context/GlobalState";
 import styles from "./AddIncomeExpense.module.css";
 
 const AddIncome = () => {
-    const [text, setText] = useState("");
-    const [amount, setAmount] = useState("");
-    const [error, setError] = useState("");
-
     const { addIncome } = useContext(GlobalContex);
+
+    const [error, setError] = useState("");
 
     const onSubmit = (e) => {
         e.preventDefault();
         setError("");
 
-        if (!text.trim()) {
+        const incomeName = e.currentTarget.elements.incomeTitle.value;
+        const incomeAmount = e.currentTarget.elements.incomeAmount.value;
+
+        if (!incomeName.trim()) {
             setError("Wprowadź nazwę przychodu");
             return;
         }
 
-        const parsedAmount = Number(parseFloat(amount).toFixed(2));
+        const parsedAmount = Number(parseFloat(incomeAmount).toFixed(2));
         if (isNaN(parsedAmount) || parsedAmount <= 0) {
             setError("Kwota powinna być większa od 0");
             return;
@@ -26,51 +27,48 @@ const AddIncome = () => {
 
         const newIncome = {
             id: Math.floor(Math.random() * 100000000),
-            text,
+            text: incomeName,
             amount: parsedAmount,
         };
 
+        const clearInputs = () => {
+            e.target.reset();
+        };
+
         addIncome(newIncome);
-        setText("");
-        setAmount("");
+        clearInputs();
     };
 
     return (
-        <>
-            <div className={styles.containerSub}>
-                <h1 className={styles.inputLabel}>Przychody</h1>
-                <div>
-                    <form onSubmit={onSubmit}>
-                        <input
-                            className={styles.description}
-                            type="text"
-                            value={text}
-                            name="incomeTitle"
-                            placeholder="Nazwa przychodu"
-                            onChange={(e) => setText(e.target.value)}
-                        />
-                        <input
-                            className={styles.amount}
-                            type="number"
-                            value={amount}
-                            name="incomeAmount"
-                            placeholder="Kwota"
-                            step="0.01"
-                            onChange={(e) => setAmount(e.target.value)}
-                        />
+        <div className={styles.containerSub}>
+            <h1 className={styles.inputLabel}>Przychody</h1>
+            <div>
+                <form onSubmit={onSubmit}>
+                    <input
+                        className={styles.description}
+                        type="text"
+                        name="incomeTitle"
+                        placeholder="Nazwa przychodu"
+                    />
+                    <input
+                        className={styles.amount}
+                        type="number"
+                        name="incomeAmount"
+                        placeholder="Kwota"
+                        step="0.01"
+                    />
 
-                        <button
-                            className={styles.addBtn}
-                            type="submit"
-                            id="btn-income"
-                        >
-                            Dodaj
-                        </button>
-                    </form>
-                    <p className={styles.addAlert}>{error}</p>
-                </div>
+                    <button
+                        className={styles.addBtn}
+                        type="submit"
+                        id="btn-income"
+                    >
+                        Dodaj
+                    </button>
+                </form>
+                <p className={styles.addAlert}>{error}</p>
             </div>
-        </>
+        </div>
     );
 };
 

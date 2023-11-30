@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { GlobalContex } from "../context/GlobalState";
 import styles from "./IncomeOutcomeList.module.css";
 
@@ -20,8 +20,7 @@ const OutcomeModal = ({ open, onClose, outcome }) => {
 
     if (!open) return null;
     return (
-        <>
-            <div className={styles.overlayStyles} />
+        <div className={styles.overlayStyles}>
             <div className={styles.modalStyles}>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="editFormName">Nazwa</label>
@@ -57,7 +56,7 @@ const OutcomeModal = ({ open, onClose, outcome }) => {
                     </button>
                 </form>
             </div>
-        </>
+        </div>
     );
 };
 
