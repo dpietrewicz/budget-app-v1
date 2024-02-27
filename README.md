@@ -1,4 +1,4 @@
-Project_1 - Future Collars
+# Project_1 - Future Collars
 
 React - Budget App
 
